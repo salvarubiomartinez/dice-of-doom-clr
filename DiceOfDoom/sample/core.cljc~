@@ -1,0 +1,29 @@
+﻿(ns sample.core
+(:gen-class))
+
+(def connectionString "Server=localhost\\SQLEXPRESS;Database=GSB_CPQ_DEV;Persist Security Info=True;Integrated Security=SSPI")
+
+(defn select [query])
+(assembly-load-from "System.Data.dll")
+(def con (new System.Data.SqlClient.SqlConnection connectionString))
+(def da (new System.Data.SqlClient.SqlDataAdapter "select * from costconcepts" con))
+(def ds (new System.Data.DataSet))
+(.Open con)
+(.Fill da ds "costconepts")
+(def data (.Tables ds))
+(def table (first data))
+(.ItemArray (first (.Rows table)))
+(def table-keys (map (fn [column] (keyword (.ColumnName column))) (.Columns table)))
+(def table-values (map (fn [row] (.ItemArray row)) (.Rows table)))
+(def result (map (fn [row] (zipmap table-keys row)) table-values))
+
+
+(defn get-person [name age]
+	{:name name :age age})
+
+(defn get-persons []
+	[(get-person "jaime" 33)
+	(get-person "pepe" 45)])
+
+(defn say-hello [person]
+  (println (str "hello " (:name person))))

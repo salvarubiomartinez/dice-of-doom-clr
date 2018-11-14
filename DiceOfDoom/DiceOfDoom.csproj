@@ -50,6 +50,9 @@
     <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\Clojure.1.9.0\lib\net40\Microsoft.Scripting.dll</HintPath>
     </Reference>
+    <Reference Include="sample.core.cljc">
+      <HintPath>.\sample.core.cljc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -67,6 +70,7 @@
     <None Include="App.config" />
     <None Include="dice_of_doom\core.cljc" />
     <None Include="packages.config" />
+    <None Include="sample\core.cljc" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
